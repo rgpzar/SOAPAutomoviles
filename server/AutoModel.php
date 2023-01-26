@@ -9,20 +9,26 @@ class Automoviles{
     }
 
 
-    public function obtenerAuto(){
-        
+    public function obtenerAuto($id){
+        $sql = "";
+        $this->conn->query($sql);
+    }
+
+    public function obtenerMarcasUrl(){
+        //
     }
 
     public function obtenerModelosPorMarca($marca){
-        
+        $sql = "";
+        $this->conn->query($sql);
     }
 
     public function authenticate(){
-
+        //
     }
 }
 
 $coches = new Automoviles();
 
-var_dump($coches->conn);
+//var_dump($coches->conn);
 ?>

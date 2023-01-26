@@ -22,7 +22,7 @@ class Conn{
 
     public static function setConn($host, $db, $user, $pass){
         try{
-            self::$conn = new PDO("mysql:host=".$host.";dbname=".$dbName, $user, $pass);
+            self::$conn = new PDO("mysql:host=".$host.";dbname=".$db, $user, $pass);
             self::$conn->exec("SET CHARACTER SET UTF8");
         }catch(Exception $e){
             die("Error: ".$e->getMessage());
