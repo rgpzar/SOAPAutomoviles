@@ -25,15 +25,15 @@ class Conn{
             self::$conn = new PDO("mysql:host=".$host.";dbname=".$db, $user, $pass);
             self::$conn->exec("SET CHARACTER SET UTF8");
         }catch(Exception $e){
-            die("Error: ".$e->getMessage());
             echo "Linea del error".$e->getLine();
+            die("Error: ".$e->getMessage());
         }
     }
 
     public function query($sql){
         $prep = self::$conn->prepare($sql);
         $prep->execute();
-        $result = $prep->fetcAll();
+        $result = $prep->fetchAll();
 
         return $result;
     }
