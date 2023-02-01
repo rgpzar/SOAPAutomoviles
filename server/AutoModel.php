@@ -26,20 +26,18 @@ class Automoviles{
     }
 
     public function obtenerModelosPorMarca($marca){
-        //$sql = "";
-        //$this->conn->query($sql);
+        $sql = "SELECT t2.modelo FROM marcas AS t1 JOIN modelos AS t2 ON t1.id = t2.id;";
+        $result = $this->conn->query($sql);
 
-        return "NOT FINISHED";
+        return $result;
     }
 
-    public function authenticate(){
-        //
-    }
+
 }
 
 $coches = new Automoviles();
 
-var_dump($coches->conn);
+/*var_dump($coches->conn);
 
 echo '<br>';
 
@@ -51,8 +49,9 @@ echo '<pre/>';
 
 echo '<pre>';
 
-echo $modelos = $coches->obtenerModelosPorMarca('test');
+$modelos = $coches->obtenerModelosPorMarca('test');
+var_dump($modelos);
 
-echo '<pre/>';
+echo '<pre/>';*/
 
 ?>
