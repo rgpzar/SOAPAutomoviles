@@ -1,7 +1,7 @@
 <?php
 require_once "Conn.php";
 
-class Automoviles{
+class AutoModel{
     public $conn;
 
     public function __construct(){
@@ -19,14 +19,21 @@ class Automoviles{
             $marcasURL[$marca] = $url;
         }
 
-
-        var_dump($marcasURL);
-
         return $marcasURL;
     }
 
+    public function obtenerMarca($idMarca){
+        $marcasURL = array();
+        $sql = "SELECT marca FROM marcas WHERE id=$idMarca;";
+        $result = $this->conn->query($sql);
+
+        $marca = $result[0]['marca'];
+
+        return $marca;
+    }
+
     public function obtenerModelosPorMarca($marca){
-        $sql = "SELECT t2.modelo FROM marcas AS t1 JOIN modelos AS t2 ON t1.id = t2.id;";
+        $sql = "SELECT t2.modelo FROM marcas AS t1 INNER JOIN modelos AS t2 ON t1.id = t2.marca WHERE t1.marca=\"$marca\";";
         $result = $this->conn->query($sql);
 
         return $result;
@@ -35,23 +42,12 @@ class Automoviles{
 
 }
 
-$coches = new Automoviles();
+$params = array(
+    'uri' => 'http://localhost/SOAPAutomoviles/server/AutoModel.php',
+    'location' => 'http://localhost/SOAPAutomoviles/server/AutoModel.php'
+);
 
-/*var_dump($coches->conn);
-
-echo '<br>';
-
-echo '<pre>';
-
-$marcasURL = $coches->obtenerMarcasUrl();
-
-echo '<pre/>';
-
-echo '<pre>';
-
-$modelos = $coches->obtenerModelosPorMarca('test');
-var_dump($modelos);
-
-echo '<pre/>';*/
-
+$server = new SoapServer(null, $params);
+$server->setClass('AutoModel');
+$server->handle();
 ?>
