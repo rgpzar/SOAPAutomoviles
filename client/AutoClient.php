@@ -7,5 +7,15 @@ $params = array(
 
 $client = new SoapClient(null, $params);
 
+
+$authParams = new stdClass();
+
+$authParams->username = 'ies';
+$authParams->password = 'daw';
+
+$headerParams = new SoapVar($authParams, SOAP_ENC_OBJECT);
+$header = new SoapHeader('localhost', 'authenticate', $headerParams, false);
+
+$client->__setSoapHeaders($header);
 //var_dump($client->obtenerMarcasUrl());
 ?>
