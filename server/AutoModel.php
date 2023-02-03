@@ -39,7 +39,17 @@ class AutoModel{
         return $result;
     }
 
+    public static function authenticate($header_params) {
 
+        if($header_params->username == 'ies' && $header_params->password == 'daw') {
+       
+        return true;
+       
+        } 
+       
+        else throw new SoapFault('Wrong user/pass combination', 401); 
+       
+        }
 }
 
 $params = array(
